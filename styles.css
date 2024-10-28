@@ -1,0 +1,27 @@
+@font-face {
+    font-family: HARRY;
+    src: url(harryfont.ttf);
+}
+
+h1{
+    font-family: harry;
+    font-size: 90px;
+    text-align: center;
+    color:rgb(190, 169, 51);
+}
+
+body {
+    background-color: black;
+}
+
+.logo {
+   align-items: end;
+}
+
+/* p{
+    color: whitesmoke;
+    font-family: harry;
+    text-align: center;
+    font-size: 50px;
+} */
+
