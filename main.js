@@ -1,17 +1,42 @@
-const fetchSpells = async () => {
-    const res = await fetch('https://potterapi-fedeperin.vercel.app/en/spells')
-    const spells = await res.json()
+const apiUrl = 'https://potterapi-fedeperin.vercel.app/en/spells';
 
-    return spells
+async function fetchSpells() {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const spells = await response.json();
+        populateSpellDropdown(spells);
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        const spellInfoDiv = document.getElementById('spell-info');
+        spellInfoDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+    }
 }
 
-fetch ("https://potterapi-fedeperin.vercel.app/en/spells")
-   .then(response => {
-    if (!response.ok) {
-        throw new Error("Could not fetch resource")
+function populateSpellDropdown(spells) {
+    const spellSelect = document.getElementById('spell-select');
+    spells.forEach(spell => {
+        const option = document.createElement('option');
+        option.value = spell.spell;
+        option.textContent = spell.spell; 
+        spellSelect.appendChild(option);
+    });
+    spellSelect.addEventListener('change', (event) => {
+        const selectedSpell = spells.find(s => s.spell === event.target.value);
+        displaySpellInfo(selectedSpell);
+    });
+}
+
+function displaySpellInfo(spell) {
+    const spellInfoDiv = document.getElementById('spell-info');
+    if (spell) {
+        spellInfoDiv.textContent = `${spell.spell}: ${spell.use}`;
+    } else {
+        spellInfoDiv.textContent = ''; 
     }
-    return response.json();
-})
-   .then(data => console.log(data.id))
-   .catch (error => console.error(error));
-   
+}
+
+fetchSpells();
+

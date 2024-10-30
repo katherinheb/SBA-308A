@@ -11,17 +11,22 @@ h1{
 }
 
 body {
-    background-color: black;
+    background-color: rgb(34, 34, 34);
 }
 
 .logo {
    align-items: end;
 }
 
-/* p{
-    color: whitesmoke;
-    font-family: harry;
-    text-align: center;
-    font-size: 50px;
-} */
+#spell-select {
+    width: 200px;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    margin: 20px auto;
+    margin-top: 60px;
+}
 
+#spell-info {
+    font-size: 100px;
+}
