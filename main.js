@@ -4,7 +4,7 @@ async function fetchSpells() {
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Error');
         }
         const spells = await response.json();
         populateSpellDropdown(spells);
